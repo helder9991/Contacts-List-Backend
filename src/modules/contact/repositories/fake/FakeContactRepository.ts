@@ -22,6 +22,12 @@ class FakeContactsRepository implements IContactsRepository {
 
     return contactExists;
   }
+
+  async listByName(name: string): Promise<Contact[]> {
+    const contacts = this.contacts.filter((contact) => contact.nome === name);
+
+    return contacts;
+  }
 }
 
 export { FakeContactsRepository };
