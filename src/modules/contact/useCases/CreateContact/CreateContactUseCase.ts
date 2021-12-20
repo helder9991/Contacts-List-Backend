@@ -23,7 +23,14 @@ class CreateContactUseCase {
 
     if (contactExists) throw new AppError('This phone number already exists', 400);
 
-    const contact = await this.contactsRepository.create({ nome, idade, telefones });
+    // Remove numeros duplicados
+    const noDuplicatedPhones = [...new Set(telefones)];
+
+    const contact = await this.contactsRepository.create({
+      nome,
+      idade,
+      telefones: noDuplicatedPhones,
+    });
 
     return contact;
   }
