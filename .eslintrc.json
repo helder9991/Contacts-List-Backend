@@ -23,6 +23,11 @@
     },
     "rules": {
         "import/prefer-default-export": "off",
-        "import/extensions": "off"
+        "import/extensions": "off",
+        "no-undef": "off",
+        "max-classes-per-file": "off",
+        "class-methods-use-this": "off",
+        "no-unused-vars": "warn",
+        "no-useless-constructor":"off"
     }
 }
