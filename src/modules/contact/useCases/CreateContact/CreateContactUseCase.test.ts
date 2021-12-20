@@ -22,18 +22,6 @@ describe('CreateContact', () => {
     expect(contact).toHaveProperty('id');
   });
 
-  it('Should not be able to create a contact with a invalid params', async () => {
-    try {
-      await createContact.execute({
-        nome: '',
-        idade: 0,
-        telefones: [],
-      });
-    } catch (err: any) {
-      expect(err.message).toBe('Validation fails');
-    }
-  });
-
   it('Should not be able to create a contact with a existing phone number', async () => {
     await createContact.execute({
       nome: 'John',
