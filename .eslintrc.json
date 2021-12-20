@@ -28,6 +28,7 @@
         "max-classes-per-file": "off",
         "class-methods-use-this": "off",
         "no-unused-vars": "warn",
-        "no-useless-constructor":"off"
+        "no-useless-constructor":"off",
+        "no-empty-function":"warn"
     }
 }
