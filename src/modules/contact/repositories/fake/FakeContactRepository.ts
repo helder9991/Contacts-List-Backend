@@ -12,6 +12,16 @@ class FakeContactsRepository implements IContactsRepository {
 
     return contact;
   }
+
+  async findByPhone(phone: string): Promise<Contact | undefined> {
+    const contactExists = this.contacts.find((contact) => {
+      const phoneExists = contact.telefones.find((telefones) => telefones.telefone === phone);
+
+      return !!phoneExists;
+    });
+
+    return contactExists;
+  }
 }
 
 export { FakeContactsRepository };
