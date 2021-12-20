@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { FakeContactsRepository } from '../../repositories/fake/FakeContactRepository';
 import { CreateContactUseCase } from '../CreateContact/CreateContactUseCase';
-import { ListContactsByNameUseCase } from './ListcontactsByNameUseCase';
+import { ListContactsByNameUseCase } from './ListContactsByNameUseCase';
 
 let fakeContactRepository: FakeContactsRepository;
 let createContact: CreateContactUseCase;
