@@ -1,5 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
+import './database/typeorm';
 import './container';
 import routes from './routes';
 import AppError from './middlewares/AppError';
