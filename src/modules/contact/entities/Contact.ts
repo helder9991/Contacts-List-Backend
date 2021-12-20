@@ -1,28 +1,21 @@
-import { v4 } from 'uuid';
+import {
+  Column, Entity, OneToMany, PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Phone } from './Phone';
 
-interface IContact {
-  phoneNumbers: string[];
-}
-
+@Entity('contacts')
 class Contact {
-  public readonly id;
+  @PrimaryGeneratedColumn()
+    id: number;
 
-  public name: string;
+  @Column()
+    name: string;
 
-  public yearsOld: number;
+  @Column()
+    yearsOld: number;
 
-  public phoneNumbers: Phone[];
-
-  constructor({ name, yearsOld, phoneNumbers }: Pick<Contact, 'name'| 'yearsOld'> & IContact) {
-    Object.assign(this, { name, yearsOld });
-    this.id = v4();
-
-    this.phoneNumbers = phoneNumbers.map((phoneNumber) => new Phone({
-      idContact: this.id,
-      phoneNumber,
-    }));
-  }
+  @OneToMany(() => Phone, (phone) => phone.idContact)
+    phoneNumbers: Phone[];
 }
 
 export { Contact };

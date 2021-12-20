@@ -1,3 +1,5 @@
+import { v4 } from 'uuid';
+import { Phone } from '../../entities/Phone';
 import { Contact } from '../../entities/Contact';
 import { ICreateContactDTO } from '../../dtos/ICreateContactDTO';
 import { IContactsRepository } from '../IContactsRepository';
@@ -6,7 +8,20 @@ class FakeContactsRepository implements IContactsRepository {
   contacts: Array<Contact> = [];
 
   async create({ name, yearsOld, phoneNumbers }: ICreateContactDTO): Promise<Contact> {
-    const contact = new Contact({ name, yearsOld, phoneNumbers });
+    const contact = new Contact();
+
+    Object.assign(contact, {
+      id: v4(),
+      name,
+      yearsOld,
+      phoneNumbers: phoneNumbers.map((phoneNumber) => {
+        const phone = new Phone();
+
+        Object.assign(phone, { id: v4(), phoneNumber });
+
+        return phone;
+      }),
+    });
 
     this.contacts.push(contact);
 

@@ -1,16 +1,19 @@
-import { v4 } from 'uuid';
+import {
+  Column, Entity, ManyToOne, PrimaryGeneratedColumn,
+} from 'typeorm';
 
+import { Contact } from './Contact';
+
+@Entity('Phones')
 class Phone {
-  public readonly id;
+  @PrimaryGeneratedColumn()
+  public readonly id: number;
 
+  @ManyToOne(() => Contact, (contact) => contact.id)
   public idContact: string;
 
+  @Column()
   public phoneNumber: string;
-
-  constructor({ idContact, phoneNumber }: Omit<Phone, 'id'>) {
-    Object.assign(this, { idContact, phoneNumber });
-    this.id = v4();
-  }
 }
 
 export { Phone };
