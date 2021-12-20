@@ -1,5 +1,5 @@
 interface IFindContactDTO {
-    telefone: string;
+    phoneNumber: string;
 }
 
 export { IFindContactDTO };

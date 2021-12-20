@@ -5,8 +5,8 @@ import { IContactsRepository } from '../IContactsRepository';
 class FakeContactsRepository implements IContactsRepository {
   contacts: Array<Contact> = [];
 
-  async create({ nome, idade, telefones }: ICreateContactDTO): Promise<Contact> {
-    const contact = new Contact({ nome, idade, telefones });
+  async create({ name, yearsOld, phoneNumbers }: ICreateContactDTO): Promise<Contact> {
+    const contact = new Contact({ name, yearsOld, phoneNumbers });
 
     this.contacts.push(contact);
 
@@ -15,7 +15,9 @@ class FakeContactsRepository implements IContactsRepository {
 
   async findByPhone(phone: string): Promise<Contact | undefined> {
     const contactExists = this.contacts.find((contact) => {
-      const phoneExists = contact.telefones.find((telefones) => telefones.telefone === phone);
+      const phoneExists = contact.phoneNumbers.find(
+        (phoneNumbers) => phoneNumbers.phoneNumber === phone,
+      );
 
       return !!phoneExists;
     });
@@ -24,7 +26,7 @@ class FakeContactsRepository implements IContactsRepository {
   }
 
   async listByName(name: string): Promise<Contact[]> {
-    const contacts = this.contacts.filter((contact) => contact.nome === name);
+    const contacts = this.contacts.filter((contact) => contact.name === name);
 
     return contacts;
   }

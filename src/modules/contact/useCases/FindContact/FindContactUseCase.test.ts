@@ -13,15 +13,15 @@ describe('FindContact', () => {
     findContact = new FindContactByPhoneUseCase(fakeContactRepository);
     createContact = new CreateContactUseCase(fakeContactRepository);
     await createContact.execute({
-      nome: 'John',
-      idade: 17,
-      telefones: ['(00)00000-0000'],
+      name: 'John',
+      yearsOld: 17,
+      phoneNumbers: ['(00)00000-0000'],
     });
   });
 
   it('Should be able to find a existing contact by phone number', async () => {
     const contact = await findContact.execute({
-      telefone: '(00)00000-0000',
+      phoneNumber: '(00)00000-0000',
     });
 
     expect(contact).toHaveProperty('id');
@@ -29,7 +29,7 @@ describe('FindContact', () => {
 
   it('Should not be able to find a non existing contact by phone number', async () => {
     const contact = await findContact.execute({
-      telefone: '(11)11111-1111',
+      phoneNumber: '(11)11111-1111',
     });
 
     expect(contact).toBeUndefined();

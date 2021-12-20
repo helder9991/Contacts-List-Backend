@@ -14,15 +14,15 @@ describe('ListContacts', () => {
     createContact = new CreateContactUseCase(fakeContactRepository);
 
     await createContact.execute({
-      nome: 'John',
-      idade: 25,
-      telefones: ['(00)00000-0000', '(11)11111-1111'],
+      name: 'John',
+      yearsOld: 25,
+      phoneNumbers: ['(00)00000-0000', '(11)11111-1111'],
     });
 
     await createContact.execute({
-      nome: 'John',
-      idade: 35,
-      telefones: ['(22)22222-2222', '(33)33333-3333'],
+      name: 'John',
+      yearsOld: 35,
+      phoneNumbers: ['(22)22222-2222', '(33)33333-3333'],
     });
   });
 
@@ -34,10 +34,10 @@ describe('ListContacts', () => {
     expect(contacts).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          idade: 35,
+          yearsOld: 35,
         }),
         expect.objectContaining({
-          idade: 25,
+          yearsOld: 25,
         }),
       ]),
     );

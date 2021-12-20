@@ -11,25 +11,25 @@ class CreateContactUseCase {
     private contactsRepository: IContactsRepository,
   ) {}
 
-  async execute({ nome, idade, telefones }: ICreateContactDTO) : Promise<Contact> {
-    const promiseContactExists = telefones.map((telefone) => {
-      const phoneExists = this.contactsRepository.findByPhone(telefone);
+  async execute({ name, yearsOld, phoneNumbers }: ICreateContactDTO) : Promise<Contact> {
+    const promiseContactExists = phoneNumbers.map((phoneNumber) => {
+      const phoneExists = this.contactsRepository.findByPhone(phoneNumber);
       return phoneExists;
     });
 
     const resolvedContactExists = await Promise.all(promiseContactExists);
 
-    const contactExists = resolvedContactExists.find((telefone) => telefone);
+    const contactExists = resolvedContactExists.find((phoneNumber) => phoneNumber);
 
     if (contactExists) throw new AppError('This phone number already exists', 400);
 
     // Remove numeros duplicados
-    const noDuplicatedPhones = [...new Set(telefones)];
+    const noDuplicatedPhones = [...new Set(phoneNumbers)];
 
     const contact = await this.contactsRepository.create({
-      nome,
-      idade,
-      telefones: noDuplicatedPhones,
+      name,
+      yearsOld,
+      phoneNumbers: noDuplicatedPhones,
     });
 
     return contact;

@@ -10,9 +10,9 @@ class CreateContactController {
 
   constructor() {
     this.schema = Yup.object().shape({
-      nome: Yup.string().required(),
-      idade: Yup.number().positive().required(),
-      telefones: Yup.array().of(Yup.string().matches(
+      name: Yup.string().required(),
+      yearsOld: Yup.number().positive().required(),
+      phoneNumbers: Yup.array().of(Yup.string().matches(
         /\(\d{2}\)([0-9]{4}|[0-9]{5})-[0-9]{4}/,
         'Phone number is not in a correct format',
       ) // (00)1234-5678 || (00)12345-6789
@@ -22,16 +22,16 @@ class CreateContactController {
   }
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { nome, idade, telefones } = request.body;
+    const { name, yearsOld, phoneNumbers } = request.body;
 
-    if (!(await this.schema.isValid({ nome, idade, telefones }))) throw new AppError('Validation fails', 400);
+    if (!(await this.schema.isValid({ name, yearsOld, phoneNumbers }))) throw new AppError('Validation fails', 400);
 
     const createContactUseCase = container.resolve(CreateContactUseCase);
 
     const contact = await createContactUseCase.execute({
-      nome,
-      idade,
-      telefones,
+      name,
+      yearsOld,
+      phoneNumbers,
     });
 
     return response.status(201).json(contact);

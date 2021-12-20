@@ -1,7 +1,7 @@
 interface ICreateContactDTO {
-    nome: string,
-    idade: number,
-    telefones: Array<string>
+    name: string,
+    yearsOld: number,
+    phoneNumbers: Array<string>
 }
 
 export { ICreateContactDTO };

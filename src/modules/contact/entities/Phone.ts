@@ -3,12 +3,12 @@ import { v4 } from 'uuid';
 class Phone {
   public readonly id;
 
-  public idContato: string;
+  public idContact: string;
 
-  public telefone: string;
+  public phoneNumber: string;
 
-  constructor({ idContato, telefone }: Omit<Phone, 'id'>) {
-    Object.assign(this, { idContato, telefone });
+  constructor({ idContact, phoneNumber }: Omit<Phone, 'id'>) {
+    Object.assign(this, { idContact, phoneNumber });
     this.id = v4();
   }
 }
