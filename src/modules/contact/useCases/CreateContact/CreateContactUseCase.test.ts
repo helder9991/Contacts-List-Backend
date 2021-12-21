@@ -49,7 +49,7 @@ describe('CreateContact', () => {
       phoneNumbers: ['(00)00000-0000', '(00)00000-0000', '(11)11111-1111'],
     });
 
-    expect(contact.phoneNumbers[0]).toHaveProperty('phoneNumber', '(00)00000-0000');
-    expect(contact.phoneNumbers[1]).toHaveProperty('phoneNumber', '(11)11111-1111');
+    expect(contact.phones[0]).toHaveProperty('number', '(00)00000-0000');
+    expect(contact.phones[1]).toHaveProperty('number', '(11)11111-1111');
   });
 });

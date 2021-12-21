@@ -14,8 +14,8 @@ class Contact {
   @Column()
     yearsOld: number;
 
-  @OneToMany(() => Phone, (phone) => phone.idContact)
-    phoneNumbers: Phone[];
+  @OneToMany(() => Phone, (phone) => phone.contact)
+    phones: Phone[];
 }
 
 export { Contact };

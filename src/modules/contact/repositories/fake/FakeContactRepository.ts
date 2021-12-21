@@ -14,10 +14,10 @@ class FakeContactsRepository implements IContactsRepository {
       id: v4(),
       name,
       yearsOld,
-      phoneNumbers: phoneNumbers.map((phoneNumber) => {
+      phones: phoneNumbers.map((phoneNumber) => {
         const phone = new Phone();
 
-        Object.assign(phone, { id: v4(), phoneNumber });
+        Object.assign(phone, { id: v4(), number: phoneNumber });
 
         return phone;
       }),
@@ -30,8 +30,8 @@ class FakeContactsRepository implements IContactsRepository {
 
   async findByPhone(phone: string): Promise<Contact | undefined> {
     const contactExists = this.contacts.find((contact) => {
-      const phoneExists = contact.phoneNumbers.find(
-        (phoneNumbers) => phoneNumbers.phoneNumber === phone,
+      const phoneExists = contact.phones.find(
+        (phoneNumbers) => phoneNumbers.number === phone,
       );
 
       return !!phoneExists;

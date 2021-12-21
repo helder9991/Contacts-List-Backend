@@ -1,19 +1,23 @@
 import {
-  Column, Entity, ManyToOne, PrimaryGeneratedColumn,
+  Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn,
 } from 'typeorm';
 
 import { Contact } from './Contact';
 
-@Entity('Phones')
+@Entity('phones')
 class Phone {
   @PrimaryGeneratedColumn()
-  public readonly id: number;
-
-  @ManyToOne(() => Contact, (contact) => contact.id)
-  public idContact: string;
+    id: number;
 
   @Column()
-  public phoneNumber: string;
+    idContact: string;
+
+  @ManyToOne(() => Contact, (contact) => contact.phones)
+  @JoinColumn({ name: 'idContact' })
+    contact: Contact;
+
+  @Column()
+    number: string;
 }
 
 export { Phone };
