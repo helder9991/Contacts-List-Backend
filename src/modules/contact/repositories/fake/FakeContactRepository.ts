@@ -46,6 +46,14 @@ class FakeContactsRepository implements IContactsRepository {
 
     return contacts;
   }
+
+  async delete(id: number): Promise<Boolean> {
+    const contactIndex = this.contacts.findIndex((contact) => contact.id === id);
+
+    if (contactIndex > -1) this.contacts.splice(contactIndex, 1);
+
+    return contactIndex > -1;
+  }
 }
 
 export { FakeContactsRepository };
