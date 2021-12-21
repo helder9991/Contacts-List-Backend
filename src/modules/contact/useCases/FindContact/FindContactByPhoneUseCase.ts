@@ -11,7 +11,7 @@ class FindContactByPhoneUseCase {
   ) {}
 
   async execute({ phoneNumber }: IFindContactDTO) : Promise<Contact | undefined> {
-    const contact = this.contactsRepository.findByPhone(phoneNumber);
+    const contact = await this.contactsRepository.findByPhone(phoneNumber);
 
     return contact;
   }
