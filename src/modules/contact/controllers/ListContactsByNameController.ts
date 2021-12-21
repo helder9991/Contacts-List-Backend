@@ -10,7 +10,7 @@ class ListContactsByNameController {
 
   constructor() {
     this.schema = Yup.object().shape({
-      name: Yup.string().required(),
+      name: Yup.string(),
     });
   }
 

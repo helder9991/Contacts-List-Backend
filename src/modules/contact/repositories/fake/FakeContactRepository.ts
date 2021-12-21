@@ -41,6 +41,7 @@ class FakeContactsRepository implements IContactsRepository {
   }
 
   async listByName(name: string): Promise<Contact[]> {
+    if (!name) return this.contacts;
     const contacts = this.contacts.filter((contact) => contact.name === name);
 
     return contacts;
