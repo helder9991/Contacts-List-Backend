@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import AppError from '../../../middlewares/AppError';
-import { DeleteContactUseCase } from '../useCases/DelectContact/DeleteContactUseCase';
+import { DeleteContactUseCase } from '../useCases/DeleteContact/DeleteContactUseCase';
 
 class DeleteContactController {
   private schema;

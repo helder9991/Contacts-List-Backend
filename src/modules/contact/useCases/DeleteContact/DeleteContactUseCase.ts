@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { IDeleteContactDTO } from '../../dtos/IDeleteContactDTO';
+import { IContactsRepository } from '../../repositories/IContactsRepository';
 
 @injectable()
 class DeleteContactUseCase {

@@ -9,7 +9,7 @@ let deleteContact: DeleteContactUseCase;
 let createContact: CreateContactUseCase;
 let listContacts: ListContactsByNameUseCase;
 
-describe('FindContact', () => {
+describe('DeleteContact', () => {
   beforeAll(async () => {
     fakeContactRepository = new FakeContactsRepository();
     deleteContact = new DeleteContactUseCase(fakeContactRepository);
