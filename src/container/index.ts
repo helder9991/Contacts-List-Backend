@@ -1,5 +1,5 @@
 import { container } from 'tsyringe';
-import { FakeContactsRepository } from '../modules/contact/repositories/fake/FakeContactRepository';
+import { ContactRepository } from '../modules/contact/repositories/typeorm/ContactsRepository';
 import { IContactsRepository } from '../modules/contact/repositories/IContactsRepository';
 
-container.registerSingleton<IContactsRepository>('ContactsRepository', FakeContactsRepository);
+container.registerSingleton<IContactsRepository>('ContactsRepository', ContactRepository);
