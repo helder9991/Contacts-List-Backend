@@ -58,6 +58,12 @@ class ContactsRepository implements IContactsRepository {
 
     return contacts;
   }
+
+  async delete(id: number): Promise<Boolean> {
+    const contact = await this.repository.delete(id);
+
+    return !!contact.affected;
+  }
 }
 
 export { ContactsRepository as ContactRepository };
