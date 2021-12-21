@@ -1,5 +1,6 @@
 import { getRepository, Like } from 'typeorm';
 import { ICreateContactDTO } from '../../dtos/ICreateContactDTO';
+import { IUpdateContactDTO } from '../../dtos/IUpdateContactDTO';
 import { Contact } from '../../entities/Contact';
 import { Phone } from '../../entities/Phone';
 import { IContactsRepository } from '../IContactsRepository';
@@ -63,6 +64,35 @@ class ContactsRepository implements IContactsRepository {
     const contact = await this.repository.delete(id);
 
     return !!contact.affected;
+  }
+
+  async update({
+    id, name, phoneNumbers, yearsOld,
+  }: IUpdateContactDTO): Promise<Contact | undefined> {
+    const contact = await this.repository.update({ id }, {
+      name,
+      yearsOld,
+    });
+
+    const phoneRepository = getRepository(Phone);
+
+    phoneNumbers.forEach(async (phoneNumber) => {
+      const phone = await phoneRepository.find({
+        where: {
+          id: phoneNumber.id,
+          idContact: id,
+        },
+      });
+
+      await phoneRepository.save({
+        ...phone[0],
+        number: phoneNumber.number,
+      });
+    });
+
+    if (!contact.affected) return undefined;
+
+    return contact.raw;
   }
 }
 
